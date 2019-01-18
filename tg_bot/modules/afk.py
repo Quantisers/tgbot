@@ -22,7 +22,7 @@ def afk(bot: Bot, update: Update):
         reason = ""
 
     sql.set_afk(update.effective_user.id, reason)
-    update.effective_message.reply_text("{} is gone Huntin :P".format(update.effective_user.first_name))
+    update.effective_message.reply_text("{} is now AFK!".format(update.effective_user.first_name))
 
 
 @run_async
@@ -34,7 +34,7 @@ def no_longer_afk(bot: Bot, update: Update):
 
     res = sql.rm_afk(user.id)
     if res:
-        update.effective_message.reply_text("{} is back to the Wolf Pack :P".format(update.effective_user.first_name))
+        update.effective_message.reply_text("{} is no longer AFK!".format(update.effective_user.first_name))
 
 
 @run_async
@@ -62,9 +62,9 @@ def reply_afk(bot: Bot, update: Update):
                 valid, reason = sql.check_afk_status(user_id)
                 if valid:
                     if not reason:
-                        res = "{} has gone huntin!".format(fst_name)
+                        res = "{} is AFK!".format(fst_name)
                     else:
-                        res = "{} has gone huntin! \n Wait they have a note for you:\n{}".format(fst_name, reason)
+                        res = "{} is AFK! says its because of:\n{}".format(fst_name, reason)
                     message.reply_text(res)
 
 
