@@ -27,7 +27,7 @@ CURRENT_WARNING_FILTER_STRING = "<b>Current warning filters in this chat:</b>\n"
 # Not async
 def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = None) -> str:
     if is_user_admin(chat, user.id):
-        message.reply_text("Damn admins, can't even be warned!")
+        message.reply_text("I wont ban WereWolves !!")
         return ""
 
     if warner:
@@ -45,12 +45,12 @@ def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = N
 
         else:  # ban
             chat.kick_member(user.id)
-            reply = "{} warnings, {} has been banned!".format(limit, mention_html(user.id, user.first_name))
+            reply = "{} warnings, {} has been outcast form the pack!".format(limit, mention_html(user.id, user.first_name))
 
         for warn_reason in reasons:
             reply += "\n - {}".format(html.escape(warn_reason))
 
-        message.bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+        message.bot.send_sticker(chat.id, BAN_STICKER)  # ban sticker
         keyboard = []
         log_reason = "<b>{}:</b>" \
                      "\n#WARN_BAN" \
